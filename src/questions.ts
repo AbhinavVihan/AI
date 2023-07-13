@@ -5,6 +5,11 @@ const questionAnswerMap: { [question: string]: string } = {
   "Hey. How are you?": "Hello, I am doing great.",
   "How's the weather outside?":
     "It's pleasant outside. You should take a walk.",
+  "Clean my room": "",
+  "Fetch the newspaper": "",
+  "Add <item> to my shopping list. (replace <item> with something you want to add)":
+    "",
+  "Read my shopping list.": "",
 };
 
 // Function to handle a question and provide an answer
@@ -16,12 +21,13 @@ export function handleQuestion(
   const data = loadData(userId);
   const answer = questionAnswerMap[question];
   if (answer) {
-    console.log("\x1b[36m%s\x1b[0m", `Answer: ${answer}`);
+    console.log("\x1b[36m%s\x1b[0m", `${answer}`);
   } else {
-    console.log(
-      "\x1b[36m%s\x1b[0m",
-      "I don't have an answer for that question."
-    );
+    console.log("\x1b[36m%s\x1b[0m", "Hmm.. I don't know that");
+    console.log("\x1b[36m%s\x1b[0m", "you can ask me something from");
+    for (const q of Object.keys(questionAnswerMap)) {
+      console.log(q);
+    }
   }
   // Continue prompting for input
   startConversation(userId);

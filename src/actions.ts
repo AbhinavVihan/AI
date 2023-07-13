@@ -1,6 +1,6 @@
-import { loadData, saveData } from "../data";
-import { isSameDay } from "../utils";
-import { startConversation } from "../index";
+import { loadData, saveData } from "./data";
+import { isSameDay } from "./utils";
+import { startConversation } from "./index";
 
 // Function to clean the room
 export function cleanRoom(userId: string) {
@@ -41,12 +41,12 @@ export function fetchNewspaper(userId: string) {
   if (lastNewspaperFetchTime && isSameDay(lastNewspaperFetchTime, new Date())) {
     console.log(
       "\x1b[36m%s\x1b[0m",
-      "I think you don't get another newspaper the same day."
+      "I think you don't get another newspaper the same day"
     );
   } else {
     data.lastNewspaperFetchTime = new Date().toISOString();
     saveData(userId, data);
-    console.log("\x1b[36m%s\x1b[0m", "Newspaper fetched!");
+    console.log("\x1b[36m%s\x1b[0m", "Here is your newspaper.");
   }
   startConversation(userId);
 }

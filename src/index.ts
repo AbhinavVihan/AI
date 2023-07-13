@@ -4,7 +4,7 @@ import {
   handleQuestion,
   readShoppingList,
 } from "./questions";
-import { cleanRoom, fetchNewspaper } from "./Actions/actions";
+import { cleanRoom, fetchNewspaper } from "./actions";
 import * as os from "os";
 import { Interface } from "readline";
 
@@ -35,11 +35,11 @@ export function startConversation(userId: string) {
     } else if (comparable(question, undefined, true)) {
       const item = question.split(" ")[1];
       addToShoppingList(userId, item, startConversation);
-    } else if (comparable(question, /clean\s+my\s+room/i)) {
+    } else if (comparable(question, /clean\s+my\s+room\s*/i)) {
       cleanRoom(userId);
-    } else if (comparable(question, /fetch\s+my\s+newspaper/i)) {
+    } else if (comparable(question, /fetch\s+the\s+newspaper\s*/i)) {
       fetchNewspaper(userId);
-    } else if (comparable(question, /read\s+my\s+shopping\s+list/i)) {
+    } else if (comparable(question, /read\s+my\s+shopping\s+list\s*/i)) {
       readShoppingList(userId, startConversation);
     } else {
       handleQuestion(userId, question, startConversation);
